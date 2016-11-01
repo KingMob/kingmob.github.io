@@ -3,5 +3,6 @@
 
 (defn page [data]
   (hp/html5
-   [:div {:style "max-width: 900px; margin: 40px auto;"}
+   [:div {:style "max-width: 900px; margin: 0 auto;"}
+    [:a {:href "/"} "Home"]
     (-> data :entry :content)]))
