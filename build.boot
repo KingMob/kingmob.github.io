@@ -6,3 +6,16 @@
 
 (require '[io.perun :refer :all]
          '[pandeiro.boot-http :refer [serve]])
+
+;  markdown render -o "/" -r site.core/page
+
+(deftask build
+  []
+  (comp (markdown)
+        (render :renderer 'site.core/page)))
+
+(deftask prod []
+    (comp (build)
+          ; (sift :include #{#"^public"})
+          ; (sift :move {#"^public/" ""})
+          (target :no-clean true :dir #{"build"})))
