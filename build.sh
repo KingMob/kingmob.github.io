@@ -6,11 +6,12 @@ remoteurl=$(git ls-remote --get-url origin)
 
 if [[ ! -d gh-pages ]]; then
     git clone --branch master ${remoteurl} gh-pages
+else
+    (
+        cd gh-pages
+        git pull
+    )
 fi
-(
-cd gh-pages
-git pull
-)
 
 boot prod
 cp -r target/* gh-pages
